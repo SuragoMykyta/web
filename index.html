@@ -43,6 +43,41 @@
     nav a:hover {
       text-decoration: underline;
     }
+
+    #carousel-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #carousel-container img {
+      width: 600px;
+      height: auto;
+      border: 4px solid #ffd700;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    button {
+      background-color: #333;
+      color: #ffd700;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .language-switch {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -57,19 +92,87 @@
         <li><a href="contact.html">Азійський фолк</a></li>
       </ul>
     </nav>
+    <div class="language-switch">
+      <button onclick="setLanguage('ua')">🇺🇦 Українська</button>
+      <button onclick="setLanguage('en')">🇬🇧 English</button>
+    </div>
   </header>
 
   <main>
+    <div id="carousel-container">
+      <button onclick="prevSlide()">&#8592;</button>
+      <img id="carousel-image" src="img/carousel1.jpg" alt="carousel image"
+           onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
+      <button onclick="nextSlide()">&#8594;</button>
+    </div>
+
     <section>
-      <h2>Вітання</h2>
-      <p>Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.</p>
+      <h2 id="greeting-title">Вітання</h2>
+      <p id="greeting-text">
+        Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>Контактні дані: <a href="mailto:folkmetal@realm.com">folkmetal@realm.com</a></p>
+    <p id="contact-label">Контактні дані: <a href="mailto:folkmetal@realm.com">folkmetal@realm.com</a></p>
     <p>&copy; 2025 Folk Pagan Metal Realm</p>
   </footer>
+
+  <script>
+    // Карусель
+    const images = [
+      'img/carousel1.jpg', 'img/carousel2.jpg', 'img/carousel3.jpg',
+      'img/carousel4.jpg', 'img/carousel5.jpg', 'img/carousel6.jpg',
+      'img/carousel7.jpg', 'img/carousel8.jpg', 'img/carousel9.jpg',
+      'img/carousel10.jpg'
+    ];
+    let currentIndex = 0;
+
+    function showImage(index) {
+      const img = document.getElementById("carousel-image");
+      img.src = images[index];
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+
+    // Збільшення при наведенні
+    function zoomIn(element) {
+      element.style.transform = "scale(1.1)";
+    }
+
+    function zoomOut(element) {
+      element.style.transform = "scale(1)";
+    }
+
+    // Багатомовний інтерфейс
+    const translations = {
+      ua: {
+        "greeting-title": "Вітання",
+        "greeting-text": "Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.",
+        "contact-label": "Контактні дані:"
+      },
+      en: {
+        "greeting-title": "Welcome",
+        "greeting-text": "Welcome to the world of folk pagan metal — where ancestral spirit, nature, and metal energy merge into a unique genre.",
+        "contact-label": "Contact:"
+      }
+    };
+
+    function setLanguage(lang) {
+      for (const key in translations[lang]) {
+        document.getElementById(key).innerText = translations[lang][key];
+      }
+    }
+  </script>
 </body>
 </html>
 

@@ -78,6 +78,13 @@
     .language-switch {
       margin-top: 10px;
     }
+
+    #clock {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -112,6 +119,13 @@
         Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.
       </p>
     </section>
+
+    <div id="clock">
+      <p id="current-time-label">Поточний час:</p>
+      <p id="current-time"></p>
+      <p id="countdown-label">До Merseburger Fest залишилось:</p>
+      <p id="countdown"></p>
+    </div>
   </main>
 
   <footer>
@@ -123,37 +137,32 @@
     // Карусель
     const images = [
       'img/hu.jpg', 'img/bloodywood.jpg', 'img/karna.jpg',
-      'img/hu.jpg', 'img/ensiferum.jpg', 'img/Finntroll.jpg',
+      'img/Eluveitie.jpg', 'img/ensiferum.jpg', 'img/Finntroll.jpg',
       'img/korpiklaani.jpg', 'img/manegarm.jpg', 'img/Skyclad.jpg',
       'img/thyrfing.jpg'
     ];
     let currentIndex = 0;
-
     function showImage(index) {
-      const img = document.getElementById("carousel-image");
-      img.src = images[index];
+      document.getElementById("carousel-image").src = images[index];
     }
-
     function nextSlide() {
       currentIndex = (currentIndex + 1) % images.length;
       showImage(currentIndex);
     }
-
     function prevSlide() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       showImage(currentIndex);
     }
 
-    // Збільшення при наведенні
+    // Наведення
     function zoomIn(element) {
       element.style.transform = "scale(1.1)";
     }
-
     function zoomOut(element) {
       element.style.transform = "scale(1)";
     }
 
-    // Багатомовний інтерфейс
+    // Мова
     const translations = {
       ua: {
         "greeting-title": "Вітання",
@@ -163,7 +172,9 @@
         "nav-genre": "Про жанр",
         "nav-scandinavian": "Скандинавський фолк",
         "nav-slavic": "Слов'янський фолк",
-        "nav-asian": "Азійський фолк"
+        "nav-asian": "Азійський фолк",
+        "current-time-label": "Поточний час:",
+        "countdown-label": "До Merseburger Fest залишилось:"
       },
       en: {
         "greeting-title": "Welcome",
@@ -173,18 +184,42 @@
         "nav-genre": "About the Genre",
         "nav-scandinavian": "Scandinavian Folk",
         "nav-slavic": "Slavic Folk",
-        "nav-asian": "Asian Folk"
+        "nav-asian": "Asian Folk",
+        "current-time-label": "Current time:",
+        "countdown-label": "Time left until Merseburger Fest:"
       }
     };
 
     function setLanguage(lang) {
       for (const key in translations[lang]) {
         const el = document.getElementById(key);
-        if (el) {
-          el.innerText = translations[lang][key];
-        }
+        if (el) el.innerText = translations[lang][key];
       }
     }
+
+    // Годинник і зворотний відлік
+    const festDate = new Date("2025-06-20T19:00:00");
+
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("current-time").innerText = now.toLocaleString();
+
+      const diff = festDate - now;
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        document.getElementById("countdown").innerText =
+          `${days} днів ${hours} год ${minutes} хв ${seconds} сек`;
+      } else {
+        document.getElementById("countdown").innerText =
+          "Фестиваль уже розпочався!";
+      }
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // перший запуск
   </script>
 </body>
 </html>

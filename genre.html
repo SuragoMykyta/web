@@ -13,6 +13,9 @@
       background-position: center;
       color: white;
       text-shadow: 1px 1px 3px black;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header, main, footer {
@@ -112,8 +115,8 @@
       </ul>
     </nav>
     <div class="language-switch">
-      <button onclick="setLanguage('українська')">🇺🇦 UA</button>
-      <button onclick="setLanguage('english')"> EN</button>
+      <button onclick="setLanguage('ua')">UA</button>
+      <button onclick="setLanguage('en')">EN</button>
     </div>
   </header>
 
@@ -137,12 +140,12 @@
       <p id="pagan-bands"><strong>Приклад гуртів:</strong> Moonsorrow, Primordial, Skyforger.</p>
 
       <div class="image-gallery">
-        <img src="img/gallery1.jpg" alt="Gallery 1" onclick="openLightbox(this.src)">
-        <img src="img/gallery2.jpg" alt="Gallery 2" onclick="openLightbox(this.src)">
-        <img src="img/gallery3.jpg" alt="Gallery 3" onclick="openLightbox(this.src)">
-        <img src="img/gallery4.jpg" alt="Gallery 4" onclick="openLightbox(this.src)">
-        <img src="img/gallery5.jpg" alt="Gallery 5" onclick="openLightbox(this.src)">
-        <img src="img/gallery6.jpg" alt="Gallery 6" onclick="openLightbox(this.src)">
+        <img src="img/Eluveitie.jpg" alt="Gallery 1" onclick="openLightbox(this.src)">
+        <img src="img/korpiklaani.jpg" alt="Gallery 2" onclick="openLightbox(this.src)">
+        <img src="img/Finntroll2.jpg" alt="Gallery 3" onclick="openLightbox(this.src)">
+        <img src="img/moonsorrow.jpg" alt="Gallery 4" onclick="openLightbox(this.src)">
+        <img src="img/primordial.jpg" alt="Gallery 5" onclick="openLightbox(this.src)">
+        <img src="img/skyforger.jpg" alt="Gallery 6" onclick="openLightbox(this.src)">
       </div>
     </section>
   </main>
@@ -210,3 +213,4 @@
   </script>
 </body>
 </html>
+

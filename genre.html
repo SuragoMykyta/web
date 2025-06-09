@@ -2,42 +2,31 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Про жанр | Folk Pagan Metal Realm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Про жанр — Folk Pagan Metal Realm</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-
     body {
+      margin: 0;
+      font-family: Georgia, serif;
       background-image: url('img/cover1.jpg');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      font-family: 'Georgia', serif;
       color: white;
       text-shadow: 1px 1px 3px black;
-      display: flex;
-      flex-direction: column;
     }
 
     header, main, footer {
       background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
       margin: 20px;
+      padding: 20px;
       border-radius: 10px;
     }
 
     nav ul {
       list-style: none;
       padding: 0;
-      margin: 0;
-    }
-
-    nav ul li {
-      display: inline-block;
-      margin-right: 15px;
+      display: flex;
+      gap: 15px;
     }
 
     nav a {
@@ -50,35 +39,68 @@
       text-decoration: underline;
     }
 
+    .language-switch {
+      margin-top: 10px;
+    }
+
     button {
       background-color: #333;
       color: #ffd700;
       border: none;
-      padding: 10px 15px;
-      font-size: 16px;
+      padding: 8px 12px;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
     button:hover {
       background-color: #555;
     }
 
-    .language-switch {
-      margin-top: 10px;
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 20px;
     }
 
-    main {
-      flex-grow: 1;
+    .image-gallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Лайтбокс */
+    #lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid white;
+      border-radius: 10px;
+    }
+
+    #lightbox:target {
+      display: flex;
     }
 
     footer {
       text-align: center;
-    }
-
-    ul {
-      padding-left: 20px;
+      margin-top: auto;
     }
   </style>
 </head>
@@ -95,8 +117,8 @@
       </ul>
     </nav>
     <div class="language-switch">
-      <button onclick="setLanguage('ua')"> UA Українська</button>
-      <button onclick="setLanguage('en')"> EN English</button>
+      <button onclick="setLanguage('ua')">🇺🇦 UA</button>
+      <button onclick="setLanguage('en')">🇬🇧 EN</button>
     </div>
   </header>
 
@@ -118,6 +140,15 @@
         Фокусується на язичницьких темах, часто з атмосферною або блек-металевою подачею. Часто має похмуріший, містичний тон, із текстами про давні вірування, природу, духовність.
       </p>
       <p><strong>Приклад гуртів:</strong> Moonsorrow, Primordial, Skyforger.</p>
+
+      <div class="image-gallery">
+        <img src="img/Eluveitie.jpg" alt="Gallery 1" onclick="openLightbox(this.src)">
+        <img src="img/korpiklaani.jpg" alt="Gallery 2" onclick="openLightbox(this.src)">
+        <img src="img/Finntroll2.jpg" alt="Gallery 3" onclick="openLightbox(this.src)">
+        <img src="img/moonsorrow.jpg" alt="Gallery 4" onclick="openLightbox(this.src)">
+        <img src="img/primordial.jpg" alt="Gallery 5" onclick="openLightbox(this.src)">
+        <img src="img/skyforger.jpg" alt="Gallery 6" onclick="openLightbox(this.src)">
+      </div>
     </section>
   </main>
 
@@ -125,6 +156,10 @@
     <p id="contact-label">Контактні дані: <a href="mailto:folkmetal@realm.com">folkmetal@realm.com</a></p>
     <p>&copy; 2025 Folk Pagan Metal Realm</p>
   </footer>
+
+  <div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Large image">
+  </div>
 
   <script>
     const translations = {
@@ -134,11 +169,11 @@
         "nav-scandinavian": "Скандинавський фолк",
         "nav-slavic": "Слов'янський фолк",
         "nav-asian": "Азійський фолк",
-        "contact-label": "Контактні дані:",
         "genre-title": "Фолк-паган метал",
         "genre-description": "Фолк-паган метал — це піджанр метал-музики, який поєднує елементи фолк-металу та паган-металу. Цей стиль часто характеризується епічною, етнічною атмосферою, використанням народних інструментів, а також текстами, що торкаються тем язичництва, природи, міфології та історії предків.",
         "folk-metal-description": "Поєднує хеві або екстремальний метал з народною музикою (часто з використанням традиційних інструментів: скрипка, флейта, волинка, ліра тощо).",
-        "pagan-metal-description": "Фокусується на язичницьких темах, часто з атмосферною або блек-металевою подачею. Часто має похмуріший, містичний тон, із текстами про давні вірування, природу, духовність."
+        "pagan-metal-description": "Фокусується на язичницьких темах, часто з атмосферною або блек-металевою подачею. Часто має похмуріший, містичний тон, із текстами про давні вірування, природу, духовність.",
+        "contact-label": "Контактні дані:"
       },
       en: {
         "nav-home": "Home",
@@ -146,11 +181,11 @@
         "nav-scandinavian": "Scandinavian Folk",
         "nav-slavic": "Slavic Folk",
         "nav-asian": "Asian Folk",
-        "contact-label": "Contact:",
         "genre-title": "Folk Pagan Metal",
-        "genre-description": "Folk pagan metal is a subgenre of metal music combining elements of folk metal and pagan metal. This style often features an epic, ethnic atmosphere, folk instruments, and lyrics that touch on themes of paganism, nature, mythology, and ancestral history.",
+        "genre-description": "Folk pagan metal is a subgenre of metal music that combines elements of folk metal and pagan metal. This style is often characterized by an epic, ethnic atmosphere, use of folk instruments, and lyrics exploring paganism, nature, mythology, and ancestral history.",
         "folk-metal-description": "Combines heavy or extreme metal with folk music (often using traditional instruments: violin, flute, bagpipes, lyre, etc.).",
-        "pagan-metal-description": "Focuses on pagan themes, often with atmospheric or black metal delivery. Frequently has a darker, mystical tone, with lyrics about ancient beliefs, nature, and spirituality."
+        "pagan-metal-description": "Focuses on pagan themes, often with atmospheric or black metal style. Usually darker and mystical, with lyrics about ancient beliefs, nature, and spirituality.",
+        "contact-label": "Contact:"
       }
     };
 
@@ -159,6 +194,15 @@
         const el = document.getElementById(key);
         if (el) el.innerText = translations[lang][key];
       }
+    }
+
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
     }
   </script>
 </body>

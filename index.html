@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Folk Pagan Metal Realm</title>
+  <style>
+    body {
+      background-image: url('img/cover1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    main, header, footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    #carousel-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #carousel-container img {
+      width: 600px;
+      height: auto;
+      border: 4px solid #ffd700;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    button {
+      background-color: #333;
+      color: #ffd700;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .language-switch {
+      margin-top: 10px;
+    }
+
+    #clock {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+    }
+
+    form input, form select {
+      display: block;
+      margin-bottom: 15px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+
+    form input:focus {
+      outline: none;
+      background-color: #f5f5dc;
+      color: black;
+    }
+
+    .form-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-buttons button {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Folk Pagan Metal Realm</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" id="nav-home">Головна</a></li>
+        <li><a href="genre.html" id="nav-genre">Про жанр</a></li>
+        <li><a href="scandinavian.html" id="nav-scandinavian">Скандинавський фолк</a></li>
+        <li><a href="slavic.html" id="nav-slavic">Слов'янський фолк</a></li>
+        <li><a href="asian.html" id="nav-asian">Азійський фолк</a></li>
+      </ul>
+    </nav>
+    <div class="language-switch">
+      <button onclick="setLanguage('ua')">🇺🇦 Українська</button>
+      <button onclick="setLanguage('en')">🇬🇧 English</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="carousel-container">
+      <button onclick="prevSlide()">&#8592;</button>
+      <img id="carousel-image" src="img/hu.jpg" alt="carousel image"
+           onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
+      <button onclick="nextSlide()">&#8594;</button>
+    </div>
+
+    <section>
+      <h2 id="greeting-title">Вітання</h2>
+      <p id="greeting-text">
+        Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.
+      </p>
+    </section>
+
+    <div id="clock">
+      <p id="current-time-label">Поточний час:</p>
+      <p id="current-time"></p>
+      <p id="countdown-label">До Merseburger Fest залишилось:</p>
+      <p id="countdown"></p>
+    </div>
+
+    <form id="registerForm" onsubmit="return validateForm()">
+      <h3 id="form-title">Створити акаунт</h3>
+      <input type="text" id="nickname" placeholder="Нікнейм" required />
+      <input type="text" id="firstname" placeholder="Ім’я" required />
+      <input type="text" id="lastname" placeholder="Прізвище" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="tel" id="phone" placeholder="Телефон" required />
+      <div class="form-buttons">
+        <button type="submit" id="submit-btn">Відправити</button>
+        <button type="reset">Скинути</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p id="contact-label">Контактні дані: <a href="mailto:folkmetal@realm.com">folkmetal@realm.com</a></p>
+    <p>&copy; 2025 Folk Pagan Metal Realm</p>
+  </footer>
+
+  <script>
+    // Зображення каруселі
+    const images = [
+      'img/hu.jpg', 'img/bloodywood.jpg', 'img/karna.jpg',
+      'img/Eluveitie.jpg', 'img/ensiferum.jpg', 'img/Finntroll1.jpg',
+      'img/korpiklaani.jpg', 'img/manegarm.jpg', 'img/Skyclad.jpg',
+      'img/thyrfing.jpg'
+    ];
+    let currentIndex = 0;
+    function showImage(index) {
+      document.getElementById("carousel-image").src = images[index];
+    }
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+    function zoomIn(el) { el.style.transform = "scale(1.1)"; }
+    function zoomOut(el) { el.style.transform = "scale(1)"; }
+
+    // Зворотній відлік
+    const festDate = new Date("2025-06-20T19:00:00");
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("current-time").innerText = now.toLocaleString();
+      const diff = festDate - now;
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        document.getElementById("countdown").innerText =
+          `${days} днів ${hours} год ${minutes} хв ${seconds} сек`;
+      } else {
+        document.getElementById("countdown").innerText = "Фестиваль уже розпочався!";
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Переклад
+    const translations = {
+      ua: {
+        "greeting-title": "Вітання",
+        "greeting-text": "Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.",
+        "contact-label": "Контактні дані:",
+        "nav-home": "Головна",
+        "nav-genre": "Про жанр",
+        "nav-scandinavian": "Скандинавський фолк",
+        "nav-slavic": "Слов'янський фолк",
+        "nav-asian": "Азійський фолк",
+        "current-time-label": "Поточний час:",
+        "countdown-label": "До Merseburger Fest залишилось:",
+

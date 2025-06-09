@@ -1,40 +1,132 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Гурти</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Скандинавський фолк — Folk Pagan Metal Realm</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background-image: url('img/cover1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header, main, footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .language-switch {
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #333;
+      color: #ffd700;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Гурти жанру</h1>
+    <h1>Folk Pagan Metal Realm</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Головна</a></li>
-        <li><a href="genre.html">Про жанр</a></li>
-        <li><a href="bands.html">Гурти</a></li>
-        <li><a href="albums.html">Альбоми</a></li>
-        <li><a href="contact.html">Контакти</a></li>
+        <li><a href="index.html" id="nav-home">Головна</a></li>
+        <li><a href="genre.html" id="nav-genre">Про жанр</a></li>
+        <li><a href="bands.html" id="nav-scandinavian">Скандинавський фолк</a></li>
+        <li><a href="albums.html" id="nav-slavic">Слов'янський фолк</a></li>
+        <li><a href="contact.html" id="nav-asian">Азійський фолк</a></li>
       </ul>
     </nav>
+    <div class="language-switch">
+      <button onclick="setLanguage('ua')">🇺🇦 UA</button>
+      <button onclick="setLanguage('en')">EN</button>
+    </div>
   </header>
+
   <main>
     <section>
-      <h2>Відомі гурти</h2>
-      <ul>
-        <li>Eluveitie (Швейцарія)</li>
-        <li>Arkona (Росія)</li>
-        <li>Korpiklaani (Фінляндія)</li>
-        <li>Гайдамаки (Україна)</li>
-      </ul>
-    </section>
-    <section>
-      <h3>Цікаві факти</h3>
-      <p>Eluveitie поєднує гельську мову з металом, а Korpiklaani — використовує пісні про алкоголь та природу.</p>
+      <h2 id="scandinavian-title">Скандинавський фолк-метал</h2>
+      <p id="scandinavian-description">
+        Скандинавський фолк-метал вирізняється використанням мелодій і мотивів північної Європи, старовинних скандинавських інструментів (наприклад, тагельхарпи, лури, волинки), а також тем, пов’язаних з вікінгами, міфологією та природою. Часто має епічне або бойове звучання, іноді поєднується з вікінг-металом.
+      </p>
     </section>
   </main>
+
   <footer>
+    <p id="contact-label">Контактні дані: <a href="mailto:folkmetal@realm.com">folkmetal@realm.com</a></p>
     <p>&copy; 2025 Folk Pagan Metal Realm</p>
   </footer>
+
+  <script>
+    const translations = {
+      ua: {
+        "nav-home": "Головна",
+        "nav-genre": "Про жанр",
+        "nav-scandinavian": "Скандинавський фолк",
+        "nav-slavic": "Слов'янський фолк",
+        "nav-asian": "Азійський фолк",
+        "scandinavian-title": "Скандинавський фолк-метал",
+        "scandinavian-description": "Скандинавський фолк-метал вирізняється використанням мелодій і мотивів північної Європи, старовинних скандинавських інструментів (наприклад, тагельхарпи, лури, волинки), а також тем, пов’язаних з вікінгами, міфологією та природою. Часто має епічне або бойове звучання, іноді поєднується з вікінг-металом.",
+        "contact-label": "Контактні дані:"
+      },
+      en: {
+        "nav-home": "Home",
+        "nav-genre": "About the Genre",
+        "nav-scandinavian": "Scandinavian Folk",
+        "nav-slavic": "Slavic Folk",
+        "nav-asian": "Asian Folk",
+        "scandinavian-title": "Scandinavian Folk Metal",
+        "scandinavian-description": "Scandinavian folk metal is distinguished by melodies and motifs of Northern Europe, traditional Nordic instruments (like tagelharpa, lur, bagpipes), and themes related to Vikings, mythology, and nature. It often has an epic or warlike sound, sometimes overlapping with Viking metal.",
+        "contact-label": "Contact:"
+      }
+    };
+
+    function setLanguage(lang) {
+      for (const key in translations[lang]) {
+        const el = document.getElementById(key);
+        if (el) el.innerText = translations[lang][key];
+      }
+    }
+  </script>
 </body>
 </html>

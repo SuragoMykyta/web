@@ -183,7 +183,6 @@
 
   <script>
     window.onload = function () {
-      // === КАРУСЕЛЬ ===
       const images = [
         'img/hu.jpg', 'img/bloodywood.jpg', 'img/karna.jpg',
         'img/Eluveitie.jpg', 'img/ensiferum.jpg', 'img/Finntroll1.jpg',
@@ -215,7 +214,6 @@
         element.style.transform = "scale(1)";
       }
 
-      // === ГОДИННИК ===
       const festDate = new Date("2025-06-20T19:00:00");
 
       function updateClock() {
@@ -243,7 +241,6 @@
       setInterval(updateClock, 1000);
       updateClock();
 
-      // === ПЕРЕКЛАД ===
       const translations = {
         ua: {
           "greeting-title": "Вітання",
@@ -282,7 +279,6 @@
         }
       }
 
-      // === ВАЛІДАЦІЯ ФОРМИ ===
       function validateForm() {
         const email = document.getElementById("email").value;
         const phone = document.getElementById("phone").value;
@@ -303,7 +299,6 @@
         return true;
       }
 
-      // === В GLOBAL ===
       window.nextSlide = nextSlide;
       window.prevSlide = prevSlide;
       window.zoomIn = zoomIn;
@@ -311,7 +306,6 @@
       window.setLanguage = setLanguage;
       window.validateForm = validateForm;
 
-      // стартове зображення
       showImage(currentIndex);
     };
   </script>

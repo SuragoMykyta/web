@@ -71,7 +71,7 @@
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
+    button:hover, input:hover, select:hover {
       background-color: #555;
     }
 
@@ -87,42 +87,29 @@
     }
 
     form {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 10px;
-      color: white;
-      font-weight: bold;
       margin-top: 30px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
     }
 
-    input, select {
+    form label {
+      display: block;
+      margin-top: 10px;
+      color: #ffd700;
+    }
+
+    form input {
       width: 100%;
       padding: 8px;
       border-radius: 5px;
       border: none;
-      margin-bottom: 10px;
-      font-family: 'Georgia', serif;
+      margin-top: 5px;
     }
 
-    input:focus, select:focus {
-      outline: none;
-      background-color: #333;
-      color: #ffd700;
-    }
-
-    button[type="submit"], button[type="reset"] {
-      margin-top: 10px;
-      padding: 10px 15px;
-      border-radius: 5px;
-      background-color: #333;
-      color: #ffd700;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #555;
+    #userForm button {
+      margin-top: 15px;
+      margin-right: 10px;
     }
   </style>
 </head>
@@ -131,11 +118,11 @@
     <h1>Folk Pagan Metal Realm</h1>
     <nav>
       <ul>
-        <li><a href="index.html" id="nav-home">Головна</a></li>
-        <li><a href="genre.html" id="nav-genre">Про жанр</a></li>
-        <li><a href="bands.html" id="nav-scandinavian">Скандинавський фолк</a></li>
-        <li><a href="albums.html" id="nav-slavic">Слов'янський фолк</a></li>
-        <li><a href="contact.html" id="nav-asian">Азійський фолк</a></li>
+        <li><a href="#" id="nav-home">Головна</a></li>
+        <li><a href="#" id="nav-genre">Про жанр</a></li>
+        <li><a href="#" id="nav-scandinavian">Скандинавський фолк</a></li>
+        <li><a href="#" id="nav-slavic">Слов'янський фолк</a></li>
+        <li><a href="#" id="nav-asian">Азійський фолк</a></li>
       </ul>
     </nav>
     <div class="language-switch">
@@ -166,47 +153,26 @@
       <p id="countdown"></p>
     </div>
 
-    <section>
-      <h2 id="form-title">Анкета учасника</h2>
-      <form id="userForm" onsubmit="return validateForm()">
-        <label id="label-name" for="name">Ім’я:</label>
-        <input type="text" id="name" name="name" required>
+    <h2 id="form-title">Реєстрація користувача</h2>
+    <form id="userForm" onsubmit="return validateForm()">
+      <label id="label-username" for="username">Нікнейм:</label>
+      <input type="text" id="username" name="username" required>
 
-        <label id="label-email" for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+      <label id="label-firstname" for="firstname">Ім’я:</label>
+      <input type="text" id="firstname" name="firstname" required>
 
-        <label id="label-phone" for="phone">Телефон:</label>
-        <input type="tel" id="phone" name="phone" required>
+      <label id="label-lastname" for="lastname">Прізвище:</label>
+      <input type="text" id="lastname" name="lastname" required>
 
-        <label id="label-birthdate" for="birthdate">Дата народження:</label>
-        <input type="date" id="birthdate" name="birthdate" required>
+      <label id="label-email" for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-        <label id="label-genre" for="genre">Улюблений піджанр:</label>
-        <select id="genre" name="genre" required>
-          <option value="">Оберіть жанр</option>
-          <option value="slavic">Слов'янський фолк</option>
-          <option value="scandinavian">Скандинавський фолк</option>
-          <option value="asian">Азійський фолк</option>
-        </select>
+      <label id="label-phone" for="phone">Телефон:</label>
+      <input type="tel" id="phone" name="phone" required>
 
-        <p id="label-gender">Стать:</p>
-        <input type="radio" id="male" name="gender" value="Чоловіча" required>
-        <label for="male" id="label-male">Чоловіча</label>
-        <input type="radio" id="female" name="gender" value="Жіноча" required>
-        <label for="female" id="label-female">Жіноча</label>
-
-        <p id="label-interest">Що ви плануєте відвідати на фестивалі?</p>
-        <input type="checkbox" id="concerts" name="interest" value="Концерти">
-        <label for="concerts" id="label-concerts">Концерти</label>
-        <input type="checkbox" id="workshops" name="interest" value="Майстер-класи">
-        <label for="workshops" id="label-workshops">Майстер-класи</label>
-        <input type="checkbox" id="camping" name="interest" value="Кемпінг">
-        <label for="camping" id="label-camping">Кемпінг</label>
-
-        <button type="submit" id="submit-btn">Відправити</button>
-        <button type="reset" id="reset-btn">Очистити</button>
-      </form>
-    </section>
+      <button type="submit" id="submit-btn">Зареєструватися</button>
+      <button type="reset" id="reset-btn">Очистити</button>
+    </form>
   </main>
 
   <footer>
@@ -252,20 +218,13 @@
         "nav-asian": "Азійський фолк",
         "current-time-label": "Поточний час:",
         "countdown-label": "До Merseburger Fest залишилось:",
-        "form-title": "Анкета учасника",
-        "label-name": "Ім’я:",
+        "form-title": "Реєстрація користувача",
+        "label-username": "Нікнейм:",
+        "label-firstname": "Ім’я:",
+        "label-lastname": "Прізвище:",
         "label-email": "Email:",
         "label-phone": "Телефон:",
-        "label-birthdate": "Дата народження:",
-        "label-genre": "Улюблений піджанр:",
-        "label-gender": "Стать:",
-        "label-male": "Чоловіча",
-        "label-female": "Жіноча",
-        "label-interest": "Що ви плануєте відвідати на фестивалі?",
-        "label-concerts": "Концерти",
-        "label-workshops": "Майстер-класи",
-        "label-camping": "Кемпінг",
-        "submit-btn": "Відправити",
+        "submit-btn": "Зареєструватися",
         "reset-btn": "Очистити"
       },
       en: {
@@ -279,20 +238,13 @@
         "nav-asian": "Asian Folk",
         "current-time-label": "Current time:",
         "countdown-label": "Time left until Merseburger Fest:",
-        "form-title": "Participant Form",
-        "label-name": "Name:",
+        "form-title": "User Registration",
+        "label-username": "Username:",
+        "label-firstname": "First Name:",
+        "label-lastname": "Last Name:",
         "label-email": "Email:",
         "label-phone": "Phone:",
-        "label-birthdate": "Date of Birth:",
-        "label-genre": "Favorite subgenre:",
-        "label-gender": "Gender:",
-        "label-male": "Male",
-        "label-female": "Female",
-        "label-interest": "What will you attend at the festival?",
-        "label-concerts": "Concerts",
-        "label-workshops": "Workshops",
-        "label-camping": "Camping",
-        "submit-btn": "Submit",
+        "submit-btn": "Register",
         "reset-btn": "Reset"
       }
     };
@@ -321,35 +273,34 @@
           "Фестиваль уже розпочався!";
       }
     }
-
     setInterval(updateClock, 1000);
     updateClock();
 
-    window.onload = function () {
-      alert("Будь ласка, заповніть анкету уважно. Всі поля обов’язкові. Email має містити '@', а телефон — лише цифри.");
-    };
-
     function validateForm() {
+      const username = document.getElementById("username").value.trim();
       const email = document.getElementById("email").value.trim();
       const phone = document.getElementById("phone").value.trim();
-      const genre = document.getElementById("genre").value;
+
+      const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
       const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
       const phoneRegex = /^[0-9]{10,15}$/;
+
+      if (!usernameRegex.test(username)) {
+        alert("Нікнейм повинен містити 3–15 символів: латинські літери, цифри або _");
+        return false;
+      }
 
       if (!emailRegex.test(email)) {
         alert("Некоректний email. Він повинен містити @ та домен.");
         return false;
       }
+
       if (!phoneRegex.test(phone)) {
         alert("Телефон має містити лише цифри (10–15 символів).");
         return false;
       }
-      if (!genre) {
-        alert("Будь ласка, оберіть піджанр.");
-        return false;
-      }
 
-      alert("Дякуємо! Ваші дані надіслані.");
+      alert("Реєстрація успішна!");
       return true;
     }
   </script>

@@ -85,11 +85,11 @@
     <h1>Folk Pagan Metal Realm</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Головна</a></li>
-        <li><a href="genre.html">Про жанр</a></li>
-        <li><a href="bands.html">Скандинавський фолк</a></li>
-        <li><a href="albums.html">Слов'янський фолк</a></li>
-        <li><a href="contact.html">Азійський фолк</a></li>
+        <li><a href="index.html" id="nav-home">Головна</a></li>
+        <li><a href="genre.html" id="nav-genre">Про жанр</a></li>
+        <li><a href="bands.html" id="nav-scandinavian">Скандинавський фолк</a></li>
+        <li><a href="albums.html" id="nav-slavic">Слов'янський фолк</a></li>
+        <li><a href="contact.html" id="nav-asian">Азійський фолк</a></li>
       </ul>
     </nav>
     <div class="language-switch">
@@ -101,7 +101,7 @@
   <main>
     <div id="carousel-container">
       <button onclick="prevSlide()">&#8592;</button>
-      <img id="carousel-image" src="img/carousel1.jpg" alt="carousel image"
+      <img id="carousel-image" src="img/hu.jpg" alt="carousel image"
            onmouseover="zoomIn(this)" onmouseout="zoomOut(this)">
       <button onclick="nextSlide()">&#8594;</button>
     </div>
@@ -158,21 +158,35 @@
       ua: {
         "greeting-title": "Вітання",
         "greeting-text": "Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.",
-        "contact-label": "Контактні дані:"
+        "contact-label": "Контактні дані:",
+        "nav-home": "Головна",
+        "nav-genre": "Про жанр",
+        "nav-scandinavian": "Скандинавський фолк",
+        "nav-slavic": "Слов'янський фолк",
+        "nav-asian": "Азійський фолк"
       },
       en: {
         "greeting-title": "Welcome",
         "greeting-text": "Welcome to the world of folk pagan metal — where ancestral spirit, nature, and metal energy merge into a unique genre.",
-        "contact-label": "Contact:"
+        "contact-label": "Contact:",
+        "nav-home": "Home",
+        "nav-genre": "About the Genre",
+        "nav-scandinavian": "Scandinavian Folk",
+        "nav-slavic": "Slavic Folk",
+        "nav-asian": "Asian Folk"
       }
     };
 
     function setLanguage(lang) {
       for (const key in translations[lang]) {
-        document.getElementById(key).innerText = translations[lang][key];
+        const el = document.getElementById(key);
+        if (el) {
+          el.innerText = translations[lang][key];
+        }
       }
     }
   </script>
 </body>
 </html>
+
 

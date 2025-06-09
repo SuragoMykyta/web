@@ -85,6 +85,45 @@
       font-size: 20px;
       font-weight: bold;
     }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+      font-family: 'Georgia', serif;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      background-color: #333;
+      color: #ffd700;
+    }
+
+    button[type="submit"], button[type="reset"] {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      background-color: #333;
+      color: #ffd700;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
   </style>
 </head>
 <body>
@@ -126,6 +165,48 @@
       <p id="countdown-label">До Merseburger Fest залишилось:</p>
       <p id="countdown"></p>
     </div>
+
+    <section>
+      <h2 id="form-title">Анкета учасника</h2>
+      <form id="userForm" onsubmit="return validateForm()">
+        <label id="label-name" for="name">Ім’я:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label id="label-email" for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label id="label-phone" for="phone">Телефон:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label id="label-birthdate" for="birthdate">Дата народження:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+
+        <label id="label-genre" for="genre">Улюблений піджанр:</label>
+        <select id="genre" name="genre" required>
+          <option value="">Оберіть жанр</option>
+          <option value="slavic">Слов'янський фолк</option>
+          <option value="scandinavian">Скандинавський фолк</option>
+          <option value="asian">Азійський фолк</option>
+        </select>
+
+        <p id="label-gender">Стать:</p>
+        <input type="radio" id="male" name="gender" value="Чоловіча" required>
+        <label for="male" id="label-male">Чоловіча</label>
+        <input type="radio" id="female" name="gender" value="Жіноча" required>
+        <label for="female" id="label-female">Жіноча</label>
+
+        <p id="label-interest">Що ви плануєте відвідати на фестивалі?</p>
+        <input type="checkbox" id="concerts" name="interest" value="Концерти">
+        <label for="concerts" id="label-concerts">Концерти</label>
+        <input type="checkbox" id="workshops" name="interest" value="Майстер-класи">
+        <label for="workshops" id="label-workshops">Майстер-класи</label>
+        <input type="checkbox" id="camping" name="interest" value="Кемпінг">
+        <label for="camping" id="label-camping">Кемпінг</label>
+
+        <button type="submit" id="submit-btn">Відправити</button>
+        <button type="reset" id="reset-btn">Очистити</button>
+      </form>
+    </section>
   </main>
 
   <footer>
@@ -134,7 +215,6 @@
   </footer>
 
   <script>
-    // Карусель
     const images = [
       'img/hu.jpg', 'img/bloodywood.jpg', 'img/karna.jpg',
       'img/Eluveitie.jpg', 'img/ensiferum.jpg', 'img/Finntroll1.jpg',
@@ -153,8 +233,6 @@
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       showImage(currentIndex);
     }
-
-    // Наведення
     function zoomIn(element) {
       element.style.transform = "scale(1.1)";
     }
@@ -162,7 +240,6 @@
       element.style.transform = "scale(1)";
     }
 
-    // Мова
     const translations = {
       ua: {
         "greeting-title": "Вітання",
@@ -174,7 +251,22 @@
         "nav-slavic": "Слов'янський фолк",
         "nav-asian": "Азійський фолк",
         "current-time-label": "Поточний час:",
-        "countdown-label": "До Merseburger Fest залишилось:"
+        "countdown-label": "До Merseburger Fest залишилось:",
+        "form-title": "Анкета учасника",
+        "label-name": "Ім’я:",
+        "label-email": "Email:",
+        "label-phone": "Телефон:",
+        "label-birthdate": "Дата народження:",
+        "label-genre": "Улюблений піджанр:",
+        "label-gender": "Стать:",
+        "label-male": "Чоловіча",
+        "label-female": "Жіноча",
+        "label-interest": "Що ви плануєте відвідати на фестивалі?",
+        "label-concerts": "Концерти",
+        "label-workshops": "Майстер-класи",
+        "label-camping": "Кемпінг",
+        "submit-btn": "Відправити",
+        "reset-btn": "Очистити"
       },
       en: {
         "greeting-title": "Welcome",
@@ -186,7 +278,22 @@
         "nav-slavic": "Slavic Folk",
         "nav-asian": "Asian Folk",
         "current-time-label": "Current time:",
-        "countdown-label": "Time left until Merseburger Fest:"
+        "countdown-label": "Time left until Merseburger Fest:",
+        "form-title": "Participant Form",
+        "label-name": "Name:",
+        "label-email": "Email:",
+        "label-phone": "Phone:",
+        "label-birthdate": "Date of Birth:",
+        "label-genre": "Favorite subgenre:",
+        "label-gender": "Gender:",
+        "label-male": "Male",
+        "label-female": "Female",
+        "label-interest": "What will you attend at the festival?",
+        "label-concerts": "Concerts",
+        "label-workshops": "Workshops",
+        "label-camping": "Camping",
+        "submit-btn": "Submit",
+        "reset-btn": "Reset"
       }
     };
 
@@ -197,13 +304,10 @@
       }
     }
 
-    // Годинник і зворотний відлік
     const festDate = new Date("2025-06-20T19:00:00");
-
     function updateClock() {
       const now = new Date();
       document.getElementById("current-time").innerText = now.toLocaleString();
-
       const diff = festDate - now;
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -219,9 +323,35 @@
     }
 
     setInterval(updateClock, 1000);
-    updateClock(); // перший запуск
+    updateClock();
+
+    window.onload = function () {
+      alert("Будь ласка, заповніть анкету уважно. Всі поля обов’язкові. Email має містити '@', а телефон — лише цифри.");
+    };
+
+    function validateForm() {
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const genre = document.getElementById("genre").value;
+      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      const phoneRegex = /^[0-9]{10,15}$/;
+
+      if (!emailRegex.test(email)) {
+        alert("Некоректний email. Він повинен містити @ та домен.");
+        return false;
+      }
+      if (!phoneRegex.test(phone)) {
+        alert("Телефон має містити лише цифри (10–15 символів).");
+        return false;
+      }
+      if (!genre) {
+        alert("Будь ласка, оберіть піджанр.");
+        return false;
+      }
+
+      alert("Дякуємо! Ваші дані надіслані.");
+      return true;
+    }
   </script>
 </body>
 </html>
-
-

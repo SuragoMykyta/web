@@ -3,46 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Про жанр</title>
+  <title>Про жанр | Folk Pagan Metal Realm</title>
+  <style>
+    body {
+      background-image: url('img/cover1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    main, header, footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      background-color: #333;
+      color: #ffd700;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .language-switch {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Про жанр</h1>
+    <h1>Folk Pagan Metal Realm</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Головна</a></li>
-        <li><a href="genre.html">Про жанр</a></li>
-        <li><a href="bands.html">Гурти</a></li>
-        <li><a href="albums.html">Альбоми</a></li>
-        <li><a href="contact.html">Контакти</a></li>
+        <li><a href="index.html" id="nav-home">Головна</a></li>
+        <li><a href="genre.html" id="nav-genre">Про жанр</a></li>
+        <li><a href="bands.html" id="nav-scandinavian">Скандинавський фолк</a></li>
+        <li><a href="albums.html" id="nav-slavic">Слов'янський фолк</a></li>
+        <li><a href="contact.html" id="nav-asian">Азійський фолк</a></li>
       </ul>
     </nav>
+    <div class="language-switch">
+      <button onclick="setLanguage('ua')">🇺🇦 UA Українська</button>
+      <button onclick="setLanguage('en')">🇺🇸 EN English</button>
+    </div>
   </header>
+
   <main>
     <section>
-      <h2>Історія</h2>
-      <p>Фолк-паган метал виник наприкінці 80-х — на перетині фолк-року та екстремального металу. Його основою є поєднання етнічних мелодій із брутальним звучанням.</p>
-    </section>
-    <section>
-      <h3>Інструменти</h3>
-      <ul>
-        <li>Багпіпа</li>
-        <li>Скрипка</li>
-        <li>Флейта</li>
-        <li>Барабани</li>
-      </ul>
-    </section>
-    <section>
-      <h3>Теми</h3>
-      <ol>
-        <li>Природа</li>
-        <li>Давні міфи</li>
-        <li>Війна та героїка</li>
-      </ol>
+      <h2 id="genre-title">Що таке фолк-паган метал?</h2>
+      <p id="genre-description">
+        Фолк-паган метал — це музичний жанр, який поєднує важкі рифи металу з традиційною народною музикою та язичницькими темами. Він часто включає використання народних інструментів, міфології, історії та культури різних народів.
+      </p>
     </section>
   </main>
+
   <footer>
+    <p id="contact-label">Контактні дані: <a href="mailto:folkmetal@realm.com">folkmetal@realm.com</a></p>
     <p>&copy; 2025 Folk Pagan Metal Realm</p>
   </footer>
+
+  <script>
+    const translations = {
+      ua: {
+        "nav-home": "Головна",
+        "nav-genre": "Про жанр",
+        "nav-scandinavian": "Скандинавський фолк",
+        "nav-slavic": "Слов'янський фолк",
+        "nav-asian": "Азійський фолк",
+        "contact-label": "Контактні дані:",
+        "genre-title": "Що таке фолк-паган метал?",
+        "genre-description": "Фолк-паган метал — це музичний жанр, який поєднує важкі рифи металу з традиційною народною музикою та язичницькими темами. Він часто включає використання народних інструментів, міфології, історії та культури різних народів."
+      },
+      en: {
+        "nav-home": "Home",
+        "nav-genre": "About the Genre",
+        "nav-scandinavian": "Scandinavian Folk",
+        "nav-slavic": "Slavic Folk",
+        "nav-asian": "Asian Folk",
+        "contact-label": "Contact:",
+        "genre-title": "What is Folk Pagan Metal?",
+        "genre-description": "Folk pagan metal is a music genre that combines heavy metal riffs with traditional folk music and pagan themes. It often features folk instruments, mythology, history, and cultural elements of different peoples."
+      }
+    };
+
+    function setLanguage(lang) {
+      for (const key in translations[lang]) {
+        const el = document.getElementById(key);
+        if (el) el.innerText = translations[lang][key];
+      }
+    }
+  </script>
 </body>
 </html>
+

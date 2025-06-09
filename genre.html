@@ -75,7 +75,6 @@
       transform: scale(1.05);
     }
 
-    /* Лайтбокс */
     #lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -92,10 +91,6 @@
       max-height: 90%;
       border: 4px solid white;
       border-radius: 10px;
-    }
-
-    #lightbox:target {
-      display: flex;
     }
 
     footer {
@@ -117,8 +112,8 @@
       </ul>
     </nav>
     <div class="language-switch">
-      <button onclick="setLanguage('ua')"> UA</button>
-      <button onclick="setLanguage('en')"> EN</button>
+      <button onclick="setLanguage('українська')">🇺🇦 UA</button>
+      <button onclick="setLanguage('english')"> EN</button>
     </div>
   </header>
 
@@ -129,25 +124,25 @@
         Фолк-паган метал — це піджанр метал-музики, який поєднує елементи фолк-металу та паган-металу. Цей стиль часто характеризується епічною, етнічною атмосферою, використанням народних інструментів, а також текстами, що торкаються тем язичництва, природи, міфології та історії предків.
       </p>
 
-      <h3>🔹 Фолк-метал</h3>
+      <h3 id="folk-heading">🔹 Фолк-метал</h3>
       <p id="folk-metal-description">
         Поєднує хеві або екстремальний метал з народною музикою (часто з використанням традиційних інструментів: скрипка, флейта, волинка, ліра тощо).
       </p>
-      <p><strong>Приклад гуртів:</strong> Eluveitie, Korpiklaani, Finntroll.</p>
+      <p id="folk-bands"><strong>Приклад гуртів:</strong> Eluveitie, Korpiklaani, Finntroll.</p>
 
-      <h3>🔹 Паган-метал</h3>
+      <h3 id="pagan-heading">🔹 Паган-метал</h3>
       <p id="pagan-metal-description">
         Фокусується на язичницьких темах, часто з атмосферною або блек-металевою подачею. Часто має похмуріший, містичний тон, із текстами про давні вірування, природу, духовність.
       </p>
-      <p><strong>Приклад гуртів:</strong> Moonsorrow, Primordial, Skyforger.</p>
+      <p id="pagan-bands"><strong>Приклад гуртів:</strong> Moonsorrow, Primordial, Skyforger.</p>
 
       <div class="image-gallery">
-        <img src="img/Eluveitie.jpg" alt="Gallery 1" onclick="openLightbox(this.src)">
-        <img src="img/korpiklaani.jpg" alt="Gallery 2" onclick="openLightbox(this.src)">
-        <img src="img/Finntroll2.jpg" alt="Gallery 3" onclick="openLightbox(this.src)">
-        <img src="img/moonsorrow.jpg" alt="Gallery 4" onclick="openLightbox(this.src)">
-        <img src="img/primordial.jpg" alt="Gallery 5" onclick="openLightbox(this.src)">
-        <img src="img/skyforger.jpg" alt="Gallery 6" onclick="openLightbox(this.src)">
+        <img src="img/gallery1.jpg" alt="Gallery 1" onclick="openLightbox(this.src)">
+        <img src="img/gallery2.jpg" alt="Gallery 2" onclick="openLightbox(this.src)">
+        <img src="img/gallery3.jpg" alt="Gallery 3" onclick="openLightbox(this.src)">
+        <img src="img/gallery4.jpg" alt="Gallery 4" onclick="openLightbox(this.src)">
+        <img src="img/gallery5.jpg" alt="Gallery 5" onclick="openLightbox(this.src)">
+        <img src="img/gallery6.jpg" alt="Gallery 6" onclick="openLightbox(this.src)">
       </div>
     </section>
   </main>
@@ -171,8 +166,12 @@
         "nav-asian": "Азійський фолк",
         "genre-title": "Фолк-паган метал",
         "genre-description": "Фолк-паган метал — це піджанр метал-музики, який поєднує елементи фолк-металу та паган-металу. Цей стиль часто характеризується епічною, етнічною атмосферою, використанням народних інструментів, а також текстами, що торкаються тем язичництва, природи, міфології та історії предків.",
+        "folk-heading": "🔹 Фолк-метал",
         "folk-metal-description": "Поєднує хеві або екстремальний метал з народною музикою (часто з використанням традиційних інструментів: скрипка, флейта, волинка, ліра тощо).",
+        "folk-bands": "Приклад гуртів: Eluveitie, Korpiklaani, Finntroll.",
+        "pagan-heading": "🔹 Паган-метал",
         "pagan-metal-description": "Фокусується на язичницьких темах, часто з атмосферною або блек-металевою подачею. Часто має похмуріший, містичний тон, із текстами про давні вірування, природу, духовність.",
+        "pagan-bands": "Приклад гуртів: Moonsorrow, Primordial, Skyforger.",
         "contact-label": "Контактні дані:"
       },
       en: {
@@ -183,8 +182,12 @@
         "nav-asian": "Asian Folk",
         "genre-title": "Folk Pagan Metal",
         "genre-description": "Folk pagan metal is a subgenre of metal music that combines elements of folk metal and pagan metal. This style is often characterized by an epic, ethnic atmosphere, use of folk instruments, and lyrics exploring paganism, nature, mythology, and ancestral history.",
+        "folk-heading": "🔹 Folk Metal",
         "folk-metal-description": "Combines heavy or extreme metal with folk music (often using traditional instruments: violin, flute, bagpipes, lyre, etc.).",
+        "folk-bands": "Example bands: Eluveitie, Korpiklaani, Finntroll.",
+        "pagan-heading": "🔹 Pagan Metal",
         "pagan-metal-description": "Focuses on pagan themes, often with atmospheric or black metal style. Usually darker and mystical, with lyrics about ancient beliefs, nature, and spirituality.",
+        "pagan-bands": "Example bands: Moonsorrow, Primordial, Skyforger.",
         "contact-label": "Contact:"
       }
     };

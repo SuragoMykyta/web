@@ -71,7 +71,8 @@
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
+    button:hover,
+    input:hover, select:hover {
       background-color: #555;
     }
 
@@ -87,35 +88,28 @@
     }
 
     form {
-      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: 30px auto;
+      background-color: rgba(255,255,255,0.1);
       padding: 20px;
       border-radius: 10px;
-      margin-top: 30px;
     }
 
-    form input, form select {
-      display: block;
-      margin-bottom: 15px;
-      width: 100%;
+    input, select {
       padding: 10px;
-      border: none;
       border-radius: 5px;
-      font-family: inherit;
+      border: none;
     }
 
-    form input:focus {
-      outline: none;
-      background-color: #f5f5dc;
-      color: black;
+    input[type="submit"] {
+      font-weight: bold;
     }
 
-    .form-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .form-buttons button {
-      width: 100%;
+    label {
+      font-weight: bold;
     }
   </style>
 </head>
@@ -126,9 +120,9 @@
       <ul>
         <li><a href="index.html" id="nav-home">Головна</a></li>
         <li><a href="genre.html" id="nav-genre">Про жанр</a></li>
-        <li><a href="scandinavian.html" id="nav-scandinavian">Скандинавський фолк</a></li>
-        <li><a href="slavic.html" id="nav-slavic">Слов'янський фолк</a></li>
-        <li><a href="asian.html" id="nav-asian">Азійський фолк</a></li>
+        <li><a href="bands.html" id="nav-scandinavian">Скандинавський фолк</a></li>
+        <li><a href="albums.html" id="nav-slavic">Слов'янський фолк</a></li>
+        <li><a href="contact.html" id="nav-asian">Азійський фолк</a></li>
       </ul>
     </nav>
     <div class="language-switch">
@@ -159,18 +153,27 @@
       <p id="countdown"></p>
     </div>
 
-    <form id="registerForm" onsubmit="return validateForm()">
-      <h3 id="form-title">Створити акаунт</h3>
-      <input type="text" id="nickname" placeholder="Нікнейм" required />
-      <input type="text" id="firstname" placeholder="Ім’я" required />
-      <input type="text" id="lastname" placeholder="Прізвище" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="tel" id="phone" placeholder="Телефон" required />
-      <div class="form-buttons">
-        <button type="submit" id="submit-btn">Відправити</button>
-        <button type="reset">Скинути</button>
-      </div>
-    </form>
+    <section>
+      <h2 id="form-title">Створити акаунт</h2>
+      <form onsubmit="return validateForm()">
+        <label for="nickname">Нік / Nickname:</label>
+        <input type="text" id="nickname" required />
+
+        <label for="firstname">Ім’я / First Name:</label>
+        <input type="text" id="firstname" required />
+
+        <label for="lastname">Прізвище / Last Name:</label>
+        <input type="text" id="lastname" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+
+        <label for="phone">Телефон / Phone:</label>
+        <input type="tel" id="phone" required />
+
+        <input type="submit" id="submit-btn" value="Відправити" />
+      </form>
+    </section>
   </main>
 
   <footer>
@@ -179,59 +182,138 @@
   </footer>
 
   <script>
-    // Зображення каруселі
-    const images = [
-      'img/hu.jpg', 'img/bloodywood.jpg', 'img/karna.jpg',
-      'img/Eluveitie.jpg', 'img/ensiferum.jpg', 'img/Finntroll1.jpg',
-      'img/korpiklaani.jpg', 'img/manegarm.jpg', 'img/Skyclad.jpg',
-      'img/thyrfing.jpg'
-    ];
-    let currentIndex = 0;
-    function showImage(index) {
-      document.getElementById("carousel-image").src = images[index];
-    }
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
-    }
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      showImage(currentIndex);
-    }
-    function zoomIn(el) { el.style.transform = "scale(1.1)"; }
-    function zoomOut(el) { el.style.transform = "scale(1)"; }
+    window.onload = function () {
+      // === КАРУСЕЛЬ ===
+      const images = [
+        'img/hu.jpg', 'img/bloodywood.jpg', 'img/karna.jpg',
+        'img/Eluveitie.jpg', 'img/ensiferum.jpg', 'img/Finntroll1.jpg',
+        'img/korpiklaani.jpg', 'img/manegarm.jpg', 'img/Skyclad.jpg',
+        'img/thyrfing.jpg'
+      ];
+      let currentIndex = 0;
 
-    // Зворотній відлік
-    const festDate = new Date("2025-06-20T19:00:00");
-    function updateClock() {
-      const now = new Date();
-      document.getElementById("current-time").innerText = now.toLocaleString();
-      const diff = festDate - now;
-      if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        document.getElementById("countdown").innerText =
-          `${days} днів ${hours} год ${minutes} хв ${seconds} сек`;
-      } else {
-        document.getElementById("countdown").innerText = "Фестиваль уже розпочався!";
+      function showImage(index) {
+        const img = document.getElementById("carousel-image");
+        if (img) img.src = images[index];
       }
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
 
-    // Переклад
-    const translations = {
-      ua: {
-        "greeting-title": "Вітання",
-        "greeting-text": "Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.",
-        "contact-label": "Контактні дані:",
-        "nav-home": "Головна",
-        "nav-genre": "Про жанр",
-        "nav-scandinavian": "Скандинавський фолк",
-        "nav-slavic": "Слов'янський фолк",
-        "nav-asian": "Азійський фолк",
-        "current-time-label": "Поточний час:",
-        "countdown-label": "До Merseburger Fest залишилось:",
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+      }
 
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+      }
+
+      function zoomIn(element) {
+        element.style.transform = "scale(1.1)";
+      }
+
+      function zoomOut(element) {
+        element.style.transform = "scale(1)";
+      }
+
+      // === ГОДИННИК ===
+      const festDate = new Date("2025-06-20T19:00:00");
+
+      function updateClock() {
+        const now = new Date();
+        const current = document.getElementById("current-time");
+        if (current) current.innerText = now.toLocaleString();
+
+        const diff = festDate - now;
+        const countdown = document.getElementById("countdown");
+
+        if (!countdown) return;
+
+        if (diff > 0) {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+          countdown.innerText =
+            `${days} днів ${hours} год ${minutes} хв ${seconds} сек`;
+        } else {
+          countdown.innerText = "Фестиваль уже розпочався!";
+        }
+      }
+
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      // === ПЕРЕКЛАД ===
+      const translations = {
+        ua: {
+          "greeting-title": "Вітання",
+          "greeting-text": "Ласкаво просимо до світу фолк-паган металу — місця, де дух предків, природа та енергія металу зливаються в унікальний жанр.",
+          "contact-label": "Контактні дані:",
+          "nav-home": "Головна",
+          "nav-genre": "Про жанр",
+          "nav-scandinavian": "Скандинавський фолк",
+          "nav-slavic": "Слов'янський фолк",
+          "nav-asian": "Азійський фолк",
+          "current-time-label": "Поточний час:",
+          "countdown-label": "До Merseburger Fest залишилось:",
+          "form-title": "Створити акаунт",
+          "submit-btn": "Відправити"
+        },
+        en: {
+          "greeting-title": "Welcome",
+          "greeting-text": "Welcome to the world of folk pagan metal — where ancestral spirit, nature, and metal energy merge into a unique genre.",
+          "contact-label": "Contact:",
+          "nav-home": "Home",
+          "nav-genre": "About the Genre",
+          "nav-scandinavian": "Scandinavian Folk",
+          "nav-slavic": "Slavic Folk",
+          "nav-asian": "Asian Folk",
+          "current-time-label": "Current time:",
+          "countdown-label": "Time left until Merseburger Fest:",
+          "form-title": "Create an account",
+          "submit-btn": "Submit"
+        }
+      };
+
+      function setLanguage(lang) {
+        for (const key in translations[lang]) {
+          const el = document.getElementById(key);
+          if (el) el.innerText = translations[lang][key];
+        }
+      }
+
+      // === ВАЛІДАЦІЯ ФОРМИ ===
+      function validateForm() {
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        const phonePattern = /^[0-9+\-\s]{7,15}$/;
+
+        if (!emailPattern.test(email)) {
+          alert("Введіть коректну електронну адресу!");
+          return false;
+        }
+
+        if (!phonePattern.test(phone)) {
+          alert("Введіть правильний номер телефону!");
+          return false;
+        }
+
+        alert("Дані успішно надіслані!");
+        return true;
+      }
+
+      // === В GLOBAL ===
+      window.nextSlide = nextSlide;
+      window.prevSlide = prevSlide;
+      window.zoomIn = zoomIn;
+      window.zoomOut = zoomOut;
+      window.setLanguage = setLanguage;
+      window.validateForm = validateForm;
+
+      // стартове зображення
+      showImage(currentIndex);
+    };
+  </script>
+</body>
+</html>

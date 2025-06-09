@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Про жанр | Folk Pagan Metal Realm</title>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
     body {
       background-image: url('img/cover1.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      margin: 0;
-      padding: 0;
       font-family: 'Georgia', serif;
       color: white;
       text-shadow: 1px 1px 3px black;
+      display: flex;
+      flex-direction: column;
     }
 
-    main, header, footer {
+    header, main, footer {
       background-color: rgba(0, 0, 0, 0.6);
       padding: 20px;
       margin: 20px;
@@ -27,6 +32,7 @@
     nav ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     nav ul li {
@@ -62,6 +68,18 @@
     .language-switch {
       margin-top: 10px;
     }
+
+    main {
+      flex-grow: 1;
+    }
+
+    footer {
+      text-align: center;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
   </style>
 </head>
 <body>
@@ -77,17 +95,29 @@
       </ul>
     </nav>
     <div class="language-switch">
-      <button onclick="setLanguage('ua')">🇺🇦 UA Українська</button>
-      <button onclick="setLanguage('en')">🇺🇸 EN English</button>
+      <button onclick="setLanguage('ua')"> UA Українська</button>
+      <button onclick="setLanguage('en')"> EN English</button>
     </div>
   </header>
 
   <main>
     <section>
-      <h2 id="genre-title">Що таке фолк-паган метал?</h2>
+      <h2 id="genre-title">Фолк-паган метал</h2>
       <p id="genre-description">
-        Фолк-паган метал — це музичний жанр, який поєднує важкі рифи металу з традиційною народною музикою та язичницькими темами. Він часто включає використання народних інструментів, міфології, історії та культури різних народів.
+        Фолк-паган метал — це піджанр метал-музики, який поєднує елементи фолк-металу та паган-металу. Цей стиль часто характеризується епічною, етнічною атмосферою, використанням народних інструментів, а також текстами, що торкаються тем язичництва, природи, міфології та історії предків.
       </p>
+
+      <h3>🔹 Фолк-метал</h3>
+      <p id="folk-metal-description">
+        Поєднує хеві або екстремальний метал з народною музикою (часто з використанням традиційних інструментів: скрипка, флейта, волинка, ліра тощо).
+      </p>
+      <p><strong>Приклад гуртів:</strong> Eluveitie, Korpiklaani, Finntroll.</p>
+
+      <h3>🔹 Паган-метал</h3>
+      <p id="pagan-metal-description">
+        Фокусується на язичницьких темах, часто з атмосферною або блек-металевою подачею. Часто має похмуріший, містичний тон, із текстами про давні вірування, природу, духовність.
+      </p>
+      <p><strong>Приклад гуртів:</strong> Moonsorrow, Primordial, Skyforger.</p>
     </section>
   </main>
 
@@ -105,8 +135,10 @@
         "nav-slavic": "Слов'янський фолк",
         "nav-asian": "Азійський фолк",
         "contact-label": "Контактні дані:",
-        "genre-title": "Що таке фолк-паган метал?",
-        "genre-description": "Фолк-паган метал — це музичний жанр, який поєднує важкі рифи металу з традиційною народною музикою та язичницькими темами. Він часто включає використання народних інструментів, міфології, історії та культури різних народів."
+        "genre-title": "Фолк-паган метал",
+        "genre-description": "Фолк-паган метал — це піджанр метал-музики, який поєднує елементи фолк-металу та паган-металу. Цей стиль часто характеризується епічною, етнічною атмосферою, використанням народних інструментів, а також текстами, що торкаються тем язичництва, природи, міфології та історії предків.",
+        "folk-metal-description": "Поєднує хеві або екстремальний метал з народною музикою (часто з використанням традиційних інструментів: скрипка, флейта, волинка, ліра тощо).",
+        "pagan-metal-description": "Фокусується на язичницьких темах, часто з атмосферною або блек-металевою подачею. Часто має похмуріший, містичний тон, із текстами про давні вірування, природу, духовність."
       },
       en: {
         "nav-home": "Home",
@@ -115,8 +147,10 @@
         "nav-slavic": "Slavic Folk",
         "nav-asian": "Asian Folk",
         "contact-label": "Contact:",
-        "genre-title": "What is Folk Pagan Metal?",
-        "genre-description": "Folk pagan metal is a music genre that combines heavy metal riffs with traditional folk music and pagan themes. It often features folk instruments, mythology, history, and cultural elements of different peoples."
+        "genre-title": "Folk Pagan Metal",
+        "genre-description": "Folk pagan metal is a subgenre of metal music combining elements of folk metal and pagan metal. This style often features an epic, ethnic atmosphere, folk instruments, and lyrics that touch on themes of paganism, nature, mythology, and ancestral history.",
+        "folk-metal-description": "Combines heavy or extreme metal with folk music (often using traditional instruments: violin, flute, bagpipes, lyre, etc.).",
+        "pagan-metal-description": "Focuses on pagan themes, often with atmospheric or black metal delivery. Frequently has a darker, mystical tone, with lyrics about ancient beliefs, nature, and spirituality."
       }
     };
 
@@ -129,4 +163,3 @@
   </script>
 </body>
 </html>
-

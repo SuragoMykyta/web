@@ -1,33 +1,231 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Контакти</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Азійський фолк — Folk Pagan Metal Realm</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background-image: url('img/cover2.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    header, main, footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .language-switch {
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #333;
+      color: #ffd700;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .band-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .band-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .band-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .band-card a {
+      display: block;
+      margin: 5px 0;
+      color: #ffd700;
+      text-decoration: none;
+    }
+
+    .band-card a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    iframe {
+      margin-top: 20px;
+      border: none;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Контактна інформація</h1>
+    <h1>Folk Pagan Metal Realm</h1>
     <nav>
       <ul>
-        <li><a href="index.html">Головна</a></li>
-        <li><a href="genre.html">Про жанр</a></li>
-        <li><a href="bands.html">Гурти</a></li>
-        <li><a href="albums.html">Альбоми</a></li>
-        <li><a href="contact.html">Контакти</a></li>
+        <li><a href="index.html" id="nav-home">Головна</a></li>
+        <li><a href="genre.html" id="nav-genre">Про жанр</a></li>
+        <li><a href="bands.html" id="nav-scandinavian">Скандинавський фолк</a></li>
+        <li><a href="albums.html" id="nav-slavic">Слов'янський фолк</a></li>
+        <li><a href="asian.html" id="nav-asian">Азійський фолк</a></li>
       </ul>
     </nav>
+    <div class="language-switch">
+      <button onclick="setLanguage('ua')"> UA</button>
+      <button onclick="setLanguage('en')">EN</button>
+    </div>
   </header>
+
   <main>
     <section>
-      <h2>Зв’яжіться з нами</h2>
-      <p>Email: contact@folkmetal.ua</p>
-      <p>Instagram: @folk_pagan_metal</p>
-      <p>Facebook: FolkPaganMetalOfficial</p>
+      <h2 id="folk-title">Азійський фолк</h2>
+      <p id="folk-description">
+        Азійський фолк-метал з'єднує елементи традиційної азійської музики з металевою енергією. Часто використовуються етнічні інструменти, народні мелодії та теми історії, природи та духовності. Найвідоміші гурти: Tengger Cavalry, Nine Treasures, Bloody Tyrant, Chthonic, Rudra, Ego Fall.
+      </p>
+    </section>
+
+    <div class="band-gallery">
+      <div class="band-card">
+        <img src="img/tengger.jpg" alt="Tengger Cavalry">
+        <p>Tengger Cavalry</p>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=dYgrzYk_T-s')">🎵 Пісня 1</a>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=YJZeJrFL5C8')">🎵 Пісня 2</a>
+      </div>
+      <div class="band-card">
+        <img src="img/ninetreasures.jpg" alt="Nine Treasures">
+        <p>Nine Treasures</p>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=1AMTzX2HRi0')">🎵 Пісня 1</a>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=KP6aX8vfnNw')">🎵 Пісня 2</a>
+      </div>
+      <div class="band-card">
+        <img src="img/chthonic.jpg" alt="Chthonic">
+        <p>Chthonic</p>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=jKbR7uFPBf0')">🎵 Пісня 1</a>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=8NfyNOFLYhI')">🎵 Пісня 2</a>
+      </div>
+      <div class="band-card">
+        <img src="img/bloodytyrant.jpg" alt="Bloody Tyrant">
+        <p>Bloody Tyrant</p>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=SrVJhMGuqZs')">🎵 Пісня 1</a>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=cKuhmqAGwN0')">🎵 Пісня 2</a>
+      </div>
+      <div class="band-card">
+        <img src="img/rudra.jpg" alt="Rudra">
+        <p>Rudra</p>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=cP-QKvGR3m8')">🎵 Пісня 1</a>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=_qE2UhnT0Zs')">🎵 Пісня 2</a>
+      </div>
+      <div class="band-card">
+        <img src="img/egofall.jpg" alt="Ego Fall">
+        <p>Ego Fall</p>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=G_9ZwGxaD5s')">🎵 Пісня 1</a>
+        <a href="javascript:void(0)" onclick="playVideo('https://www.youtube.com/watch?v=WjW-CPiCk6U')">🎵 Пісня 2</a>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <h3>🎬 Перегляд відео</h3>
+      <iframe id="yt-player" width="100%" height="400" style="border-radius: 10px;" src="" allowfullscreen></iframe>
+    </div>
+
+    <section style="margin-top: 40px;">
+      <h3>🆕 Новинки</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 40px;">
+        <div style="display: flex; align-items: center; gap: 20px; flex: 1 1 45%;">
+          <img src="img/ninetreasures-2024.jpg" alt="Nine Treasures" style="width: 200px; border-radius: 10px;">
+          <p style="font-size: 1.2em; color: #ffd700;">Nine Treasures – Awakening of the Grassland (2024)</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; flex: 1 1 45%;">
+          <img src="img/chthonic-2024.jpg" alt="Chthonic 2024" style="width: 200px; border-radius: 10px;">
+          <p style="font-size: 1.2em; color: #ffd700;">Chthonic – Battlefields Beyond Time (2024)</p>
+        </div>
+      </div>
     </section>
   </main>
+
   <footer>
+    <p id="contact-label">Контактні дані: <a href="mailto:folkmetal@realm.com">folkmetal@realm.com</a></p>
     <p>&copy; 2025 Folk Pagan Metal Realm</p>
   </footer>
+
+  <script>
+    const translations = {
+      ua: {
+        "nav-home": "Головна",
+        "nav-genre": "Про жанр",
+        "nav-scandinavian": "Скандинавський фолк",
+        "nav-slavic": "Слов'янський фолк",
+        "nav-asian": "Азійський фолк",
+        "folk-title": "Азійський фолк",
+        "folk-description": "Азійський фолк-метал з'єднує елементи традиційної азійської музики з металевою енергією. Часто використовуються етнічні інструменти, народні мелодії та теми історії, природи та духовності. Найвідоміші гурти: Tengger Cavalry, Nine Treasures, Bloody Tyrant, Chthonic, Rudra, Ego Fall.",
+        "contact-label": "Контактні дані:"
+      },
+      en: {
+        "nav-home": "Home",
+        "nav-genre": "About the Genre",
+        "nav-scandinavian": "Scandinavian Folk",
+        "nav-slavic": "Slavic Folk",
+        "nav-asian": "Asian Folk",
+        "folk-title": "Asian Folk",
+        "folk-description": "Asian folk metal blends traditional Asian music with the power of metal. It often features ethnic instruments, folk melodies, and themes of history, nature, and spirituality. Top bands: Tengger Cavalry, Nine Treasures, Bloody Tyrant, Chthonic, Rudra, Ego Fall.",
+        "contact-label": "Contact:"
+      }
+    };
+
+    function setLanguage(lang) {
+      for (const key in translations[lang]) {
+        const el = document.getElementById(key);
+        if (el) el.innerText = translations[lang][key];
+      }
+    }
+
+    function playVideo(url) {
+      const player = document.getElementById("yt-player");
+      const videoId = new URL(url).searchParams.get("v");
+      if (videoId) {
+        player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      }
+    }
+  </script>
 </body>
 </html>

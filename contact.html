@@ -157,7 +157,7 @@
       </div>
       <div class="band-card">
         <img src="img/hu1.jpg" alt="The hu">
-        <p>the Hu</p>
+        <p>The Hu</p>
         <a href="javascript:void(0)" onclick="playVideo('https://youtu.be/QpxA_ZxGX_M?si=9IHykkkZsaGAgXTf')">🎵 Пісня 1</a>
         <a href="javascript:void(0)" onclick="playVideo('https://youtu.be/jM8dCGIm6yc?si=roMdiSELV62PuV7l')">🎵 Пісня 2</a>
       </div>
@@ -221,9 +221,13 @@
 
     function playVideo(url) {
       const player = document.getElementById("yt-player");
-      const videoId = new URL(url).searchParams.get("v");
+      const match = url.match(/youtu\.be\/([^?]+)/);
+      const videoId = match ? match[1] : null;
+
       if (videoId) {
         player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      } else {
+        alert("Не вдалося завантажити відео. Перевір URL.");
       }
     }
   </script>

@@ -87,29 +87,16 @@
       font-weight: bold;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 400px;
-      margin: 30px auto;
-      background-color: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 10px;
+    audio {
+      display: block;
+      margin: 10px auto;
+      width: 90%;
+      max-width: 500px;
     }
 
-    input, select {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-    }
-
-    input[type="submit"] {
-      font-weight: bold;
-    }
-
-    label {
-      font-weight: bold;
+    .music-section {
+      text-align: center;
+      margin-top: 30px;
     }
   </style>
 </head>
@@ -126,8 +113,8 @@
       </ul>
     </nav>
     <div class="language-switch">
-      <button onclick="setLanguage('ua')">🇺🇦 Українська</button>
-      <button onclick="setLanguage('en')">en English</button>
+      <button onclick="setLanguage('ua')">UA</button>
+      <button onclick="setLanguage('en')">EN</button>
     </div>
   </header>
 
@@ -153,26 +140,24 @@
       <p id="countdown"></p>
     </div>
 
-    <section>
-      <h2 id="form-title">Створити акаунт</h2>
-      <form onsubmit="return validateForm()">
-        <label for="nickname">Нік / Nickname:</label>
-        <input type="text" id="nickname" required />
+    <section class="music-section">
+      <h2 id="form-title">Рекомендовані треки</h2>
+      <p>Поринь у звучання фолк-паган металу:</p>
+      <audio controls>
+        <source src="music/song1.mp3" type="audio/mpeg">
+        Твій браузер не підтримує аудіо.
+      </audio>
+      <audio controls>
+        <source src="music/song2.mp3" type="audio/mpeg">
+      </audio>
+      <audio controls>
+        <source src="music/song33.mp3" type="audio/mpeg">
+      </audio>
+      <audio controls>
+        <source src="music/song4.mp3" type="audio/mpeg">
+      </audio>
 
-        <label for="firstname">Ім’я / First Name:</label>
-        <input type="text" id="firstname" required />
-
-        <label for="lastname">Прізвище / Last Name:</label>
-        <input type="text" id="lastname" required />
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" required />
-
-        <label for="phone">Телефон / Phone:</label>
-        <input type="tel" id="phone" required />
-
-        <input type="submit" id="submit-btn" value="Відправити" />
-      </form>
+      <p><a href="register.html"><button>Створити акаунт / Увійти</button></a></p>
     </section>
   </main>
 
@@ -253,8 +238,7 @@
           "nav-asian": "Азійський фолк",
           "current-time-label": "Поточний час:",
           "countdown-label": "До Merseburger Fest залишилось:",
-          "form-title": "Створити акаунт",
-          "submit-btn": "Відправити"
+          "form-title": "Рекомендовані треки"
         },
         en: {
           "greeting-title": "Welcome",
@@ -267,8 +251,7 @@
           "nav-asian": "Asian Folk",
           "current-time-label": "Current time:",
           "countdown-label": "Time left until Merseburger Fest:",
-          "form-title": "Create an account",
-          "submit-btn": "Submit"
+          "form-title": "Recommended Tracks"
         }
       };
 
@@ -279,35 +262,15 @@
         }
       }
 
-      function validateForm() {
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone").value;
-        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-        const phonePattern = /^[0-9+\-\s]{7,15}$/;
-
-        if (!emailPattern.test(email)) {
-          alert("Введіть коректну електронну адресу!");
-          return false;
-        }
-
-        if (!phonePattern.test(phone)) {
-          alert("Введіть правильний номер телефону!");
-          return false;
-        }
-
-        alert("Дані успішно надіслані!");
-        return true;
-      }
-
       window.nextSlide = nextSlide;
       window.prevSlide = prevSlide;
       window.zoomIn = zoomIn;
       window.zoomOut = zoomOut;
       window.setLanguage = setLanguage;
-      window.validateForm = validateForm;
 
       showImage(currentIndex);
     };
   </script>
 </body>
 </html>
+

@@ -183,45 +183,64 @@
     <p>&copy; 2025 Folk Pagan Metal Realm</p>
   </footer>
 
-  <script>
-    const translations = {
-      ua: {
-        "nav-home": "Головна",
-        "nav-genre": "Про жанр",
-        "nav-scandinavian": "Скандинавський фолк",
-        "nav-slavic": "Слов'янський фолк",
-        "nav-asian": "Азійський фолк",
-        "folk-title": "Скандинавський фолк",
-        "folk-description": "Скандинавський фолк-метал поєднує важкі гітарні рифи з мелодіями та міфологією Півночі. Використовуються скандинавські народні інструменти, теми вікінгів, давньої історії та природних сил. Найвідоміші гурти: Wardruna, Skálmöld, Tyr, Fejd, Månegarm, Einherjer.",
-        "contact-label": "Контактні дані:"
-      },
-      en: {
-        "nav-home": "Home",
-        "nav-genre": "About the Genre",
-        "nav-scandinavian": "Scandinavian Folk",
-        "nav-slavic": "Slavic Folk",
-        "nav-asian": "Asian Folk",
-        "folk-title": "Scandinavian Folk",
-        "folk-description": "Scandinavian folk metal combines heavy guitar riffs with melodies and mythology of the North. It features traditional Scandinavian instruments, Viking themes, ancient history, and forces of nature. Most famous bands: Wardruna, Skálmöld, Tyr, Fejd, Månegarm, Einherjer.",
-        "contact-label": "Contact:"
-      }
-    };
-
-    function setLanguage(lang) {
-      for (const key in translations[lang]) {
-        const el = document.getElementById(key);
-        if (el) el.innerText = translations[lang][key];
-      }
+ <script>
+  const translations = {
+    ua: {
+      "nav-home": "Головна",
+      "nav-genre": "Про жанр",
+      "nav-scandinavian": "Скандинавський фолк",
+      "nav-slavic": "Слов'янський фолк",
+      "nav-asian": "Азійський фолк",
+      "folk-title": "Скандинавський фолк",
+      "folk-description": "Скандинавський фолк-метал поєднує важкі гітарні рифи з мелодіями та міфологією Півночі. Використовуються скандинавські народні інструменти, теми вікінгів, давньої історії та природних сил. Найвідоміші гурти: Wardruna, Skálmöld, Tyr, Fejd, Månegarm, Einherjer.",
+      "contact-label": "Контактні дані:"
+    },
+    en: {
+      "nav-home": "Home",
+      "nav-genre": "About the Genre",
+      "nav-scandinavian": "Scandinavian Folk",
+      "nav-slavic": "Slavic Folk",
+      "nav-asian": "Asian Folk",
+      "folk-title": "Scandinavian Folk",
+      "folk-description": "Scandinavian folk metal combines heavy guitar riffs with melodies and mythology of the North. It features traditional Scandinavian instruments, Viking themes, ancient history, and forces of nature. Most famous bands: Wardruna, Skálmöld, Tyr, Fejd, Månegarm, Einherjer.",
+      "contact-label": "Contact:"
     }
+  };
 
-    function playVideo(url) {
-      const player = document.getElementById("yt-player");
-      const videoId = new URL(url).searchParams.get("v");
+  function setLanguage(lang) {
+    for (const key in translations[lang]) {
+      const el = document.getElementById(key);
+      if (el) el.innerText = translations[lang][key];
+    }
+  }
+
+  function playVideo(url) {
+    let videoId = null;
+
+    try {
+      const parsedUrl = new URL(url);
+
+      // Перевіряємо тип посилання
+      if (parsedUrl.hostname.includes("youtube.com")) {
+        if (parsedUrl.searchParams.has("v")) {
+          videoId = parsedUrl.searchParams.get("v");
+        } else if (parsedUrl.pathname.startsWith("/shorts/")) {
+          videoId = parsedUrl.pathname.split("/shorts/")[1];
+        }
+      } else if (parsedUrl.hostname === "youtu.be") {
+        videoId = parsedUrl.pathname.slice(1);
+      }
+
+      // Якщо ідентифікатор знайдено — вбудовуємо
       if (videoId) {
+        const player = document.getElementById("yt-player");
         player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      } else {
+        alert("Неможливо розпізнати відео. Перевірте посилання.");
       }
+    } catch (e) {
+      alert("Невірне посилання.");
     }
-  </script>
-</body>
-</html>
+  }
+</script>
 
